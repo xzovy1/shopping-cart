@@ -13,15 +13,15 @@ the purpose of this project is to work on react concepts learned in the odin pro
 
 ## Component and Folder structure
 ### 'Home Page'
-    - Simple animations/ welcome page
-    - button component to enter shop
-    
+- Simple animations/ welcome page
+- button component to enter shop
+
 ### Shop component(2 pages):
-    - 'Shopping Page':
-        - displays items for sale Grid layout of fetched items. 
-        - 'Nav bar' fixed in place displaying item names and quantity.
-    - 'Checkout page' displays similar to sidebar as its own page which acts as confirmation area.
-        - "check out now" button will just empty the cart showing a pop up window with something like "Order received!"
+- 'Shopping Page':
+    - displays items for sale Grid layout of fetched items. 
+    - 'Nav bar' fixed in place displaying item names and quantity.
+- 'Checkout page' displays similar to sidebar as its own page which acts as confirmation area.
+    - "check out now" button will just empty the cart showing a pop up window with something like "Order received!"
 
 ## Helpful Templating/info
 - [gitignore](https://www.toptal.com/developers/gitignore).

@@ -1,8 +1,10 @@
-export default function Storefront({clickHandler}) {
+import { Link } from "react-router-dom";
+
+export default function Storefront() {
     return(
         <>
             <h1>Welcome to The Mart Cart!</h1>
-            <button onClick={clickHandler}>Enter</button>
+            <Link to="inventory"><button>Enter</button></Link>
         </>
     )
 }

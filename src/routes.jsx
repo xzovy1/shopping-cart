@@ -1,5 +1,5 @@
 import App from "./App";
-import Inventory from "./Inventory";
+import ShoppingPage from "./ShoppingPage";
 
 const routes = [
     {
@@ -7,8 +7,8 @@ const routes = [
         element: <App />,
     },
     {
-        path: "inventory",
-        element: <Inventory />,
+        path: "shopping-page",
+        element: <ShoppingPage />,
     }
 ];
 

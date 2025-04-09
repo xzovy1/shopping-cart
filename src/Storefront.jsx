@@ -4,7 +4,7 @@ export default function Storefront() {
     return(
         <>
             <h1>Welcome to The Mart Cart!</h1>
-            <Link to="inventory"><button>Enter</button></Link>
+            <Link to="shopping-page"><button>Enter</button></Link>
         </>
     )
 }

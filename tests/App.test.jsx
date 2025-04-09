@@ -3,7 +3,7 @@ import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Routes, Route } from "react-router-dom";
-import Inventory from "../src/Inventory";
+import ShoppingPage from "../src/ShoppingPage";
 
 describe("App component", ()=>{
     it("renders store front page with an enter button", ()=>{
@@ -17,12 +17,12 @@ describe("App component", ()=>{
         
         screen.findByText(/Enter/i)
     });
-    it("button changes to store inventory page", async () =>{
+    it("button changes to shopping-page", async () =>{
         render(
             <MemoryRouter initialEntries={['/']}>
               <Routes>
                 <Route path="/" element={<App />} />
-                <Route path="/inventory" element={<Inventory />} />
+                <Route path="/shopping-page" element={<ShoppingPage />} />
               </Routes>
             </MemoryRouter>
           );
@@ -33,7 +33,7 @@ describe("App component", ()=>{
         const button = screen.getByRole("button")
 
         await user.click(button);
-        expect(screen.getByText(/Welcome in!/i)).toBeInTheDocument();
+        expect(screen.getByTestId("entered-store")).toBeInTheDocument();
     })
 })
 

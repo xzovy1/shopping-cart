@@ -6,7 +6,7 @@ import Cartbar from "../src/Cart";
 import ShoppingPage from "../src/ShoppingPage";
 import Storefront from "../src/Storefront";
 
-test('cart bar and shopping page visible with zero items in cart',()=>{
+test('cart bar and shopping page visible with zero items in cart',async ()=>{
     render(
         <MemoryRouter >
           <Routes>

@@ -7,9 +7,9 @@ const ShoppingPage = () => {
 
     return (
         <div data-testid="entered-store">
-        <h1>Welcome in!</h1>
-        <Cartbar quantity={inCart.length} />
-        <Inventory />
+            <h1>Welcome in!</h1>
+            <Cartbar quantity={inCart.length} />
+            <Inventory />
         </div>
     )
 }

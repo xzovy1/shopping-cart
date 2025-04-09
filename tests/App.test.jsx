@@ -4,19 +4,17 @@ import { render, screen } from "@testing-library/react";
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Routes, Route } from "react-router-dom";
 import ShoppingPage from "../src/ShoppingPage";
+import Storefront from "../src/Storefront";
 
 describe("App component", ()=>{
     it("renders store front page with an enter button", ()=>{
         render(
-            <MemoryRouter initialEntries={['/']}>
-              <Routes>
-                <Route path="/" element={<App />} />
-              </Routes>
+            <MemoryRouter>
+              <Storefront />
             </MemoryRouter>
           );
-        
+
         expect(screen.getByRole("button", {name: /Enter/i})).toBeInTheDocument();
-        expect(screen.getByText(/Welcome to the Mart Cart!/i)).toBeInTheDocument();
     });
     it("button changes to shopping-page", async () =>{
         render(

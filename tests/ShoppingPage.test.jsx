@@ -16,23 +16,21 @@ test('cart bar and shopping page visible with zero items in cart',async ()=>{
           </Routes>
         </MemoryRouter>
       );
+      screen.debug();
+      expect(screen.getByText(/Welcome to The Mart Cart/i)).toBeInTheDocument();
 
       const user = userEvent.setup();
       const button = screen.getByRole("button")
-      
-      await user.click(button);
-      
-      const emptyCartMessage = await screen.findByText(/looks like the cart is empty/i);
-            expect(emptyCartMessage).toBeInTheDocument();
 
+      await user.click(button);
+
+      const emptyCartMessage = await screen.findByText(/looks like the cart is empty/i);
+      expect(emptyCartMessage).toBeInTheDocument();
       expect(screen.getByTestId('inventory')).toBeInTheDocument(); 
-      expect(screen.getByTestId('cart-bar')).toBeInTheDocument();
+      expect(screen.getByTestId("cart-bar")).toBeInTheDocument();
 })
 
 // test('cart and shopping page visible with one or more items in cart', () => {
-
-//  const cartItems = [{id: 1, name: "Test Item", price: 10.99, quantity: 1}]
-
 //   render(
 //     <MemoryRouter >
 //       <Routes>
@@ -41,9 +39,7 @@ test('cart bar and shopping page visible with zero items in cart',async ()=>{
 //       </Routes>
 //     </MemoryRouter>
 //   );
-//   // render(<Cartbar quantity={1} />)
-//   // render(<Inventory />)
-//   // screen.debug();
+
 //   expect(screen.getByRole("list")).toBeInTheDocument();
 //   expect(screen.getByTestId("inventory")).toBeInTheDocument();
 // })

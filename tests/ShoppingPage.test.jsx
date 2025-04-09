@@ -25,34 +25,33 @@ test('cart bar and shopping page visible with zero items in cart',async ()=>{
       await user.click(button);
 
       const emptyCartMessage = await screen.findByText(/looks like the cart is empty/i);
-      expect(emptyCartMessage).toBeInTheDocument();
+            expect(emptyCartMessage).toBeInTheDocument();
       waitForElementToBeRemoved(screen.queryByText(/loading/i));
-      screen.debug();  
       expect(screen.getByTestId("cart-bar")).toBeInTheDocument();
 })
 
+test('cart and shopping page visible with one or more items in cart', () => {
+  const clickHandler = vi.fn()
+  const fetchedData = ()=> {
+    return {
+      items: [
+        { id: 1, title: 'Item 1', image: '/item1.jpg', description: 'Description 1' },
+        { id: 2, title: 'Item 2', image: '/item2.jpg', description: 'Description 2' },
+      ],
+      loading: false,
+      error: null,
+    }
+  }
+  
+  render(
+    <>
+      <Cartbar />
+      <Inventory itemClickHandler={clickHandler} fetchHook={fetchedData}/>
+    </>
+  );
 
+    expect(screen.getByTestId("inventory")).toBeInTheDocument();
+    expect(screen.getByText("Item 2")).toBeInTheDocument();
+    expect(screen.getByTestId("cart-bar")).toBeInTheDocument();
 
-  // vi.mock('../src/useItems', () => ({
-  //   default: () => ({
-  //     items: [
-  //       { id: 1, title: 'Item 1', image: '/item1.jpg', description: 'Description 1' },
-  //       { id: 2, title: 'Item 2', image: '/item2.jpg', description: 'Description 2' },
-  //     ],
-  //     loading: false,
-  //     error: null,
-  //   }),
-  // }));
-  
-  test('cart and shopping page visible with one or more items in cart', async () => {
-    const handleClick = vi.fn();
-  
-    render(<Inventory itemClickHandler={handleClick} />);
-  
-    // Verify the inventory component renders correctly
-    // expect(await screen.findByTe("inventory")).toBeInTheDocument();
-    // expect( await screen.findByText("")).toBeInTheDocument();
-    // expect(screen.getByText("Item 2")).toBeInTheDocument();
-    screen.debug();
-    
   });

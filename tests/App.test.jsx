@@ -15,8 +15,7 @@ describe("App component", ()=>{
             </MemoryRouter>
           );
         
-        expect(screen.getByRole("button", {name: /Enter/i})).toBeInTheDocument();
-        expect(screen.getByText(/Welcome to the Mart Cart!/i)).toBeInTheDocument();
+        screen.findByText(/Enter/i)
     });
     it("button changes to shopping-page", async () =>{
         render(

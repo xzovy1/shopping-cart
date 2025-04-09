@@ -11,5 +11,4 @@ const routes = [
         element: <ShoppingPage />,
     }
 ];
-
 export default routes;

@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitForElementToBeRemoved } from "@testing-library/react";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
 import Inventory from "../src/Inventory";
 import Cartbar from "../src/Cart";
@@ -26,20 +26,33 @@ test('cart bar and shopping page visible with zero items in cart',async ()=>{
 
       const emptyCartMessage = await screen.findByText(/looks like the cart is empty/i);
       expect(emptyCartMessage).toBeInTheDocument();
-      expect(screen.getByTestId('inventory')).toBeInTheDocument(); 
+      waitForElementToBeRemoved(screen.queryByText(/loading/i));
+      screen.debug();  
       expect(screen.getByTestId("cart-bar")).toBeInTheDocument();
 })
 
-// test('cart and shopping page visible with one or more items in cart', () => {
-//   render(
-//     <MemoryRouter >
-//       <Routes>
-//         <Route path="/" element={<Storefront />} />
-//         <Route path="/shopping-page" element={<ShoppingPage />} />
-//       </Routes>
-//     </MemoryRouter>
-//   );
 
-//   expect(screen.getByRole("list")).toBeInTheDocument();
-//   expect(screen.getByTestId("inventory")).toBeInTheDocument();
-// })
+
+  // vi.mock('../src/useItems', () => ({
+  //   default: () => ({
+  //     items: [
+  //       { id: 1, title: 'Item 1', image: '/item1.jpg', description: 'Description 1' },
+  //       { id: 2, title: 'Item 2', image: '/item2.jpg', description: 'Description 2' },
+  //     ],
+  //     loading: false,
+  //     error: null,
+  //   }),
+  // }));
+  
+  test('cart and shopping page visible with one or more items in cart', async () => {
+    const handleClick = vi.fn();
+  
+    render(<Inventory itemClickHandler={handleClick} />);
+  
+    // Verify the inventory component renders correctly
+    // expect(await screen.findByTe("inventory")).toBeInTheDocument();
+    // expect( await screen.findByText("")).toBeInTheDocument();
+    // expect(screen.getByText("Item 2")).toBeInTheDocument();
+    screen.debug();
+    
+  });

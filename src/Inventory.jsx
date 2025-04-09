@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ItemCard from "./ItemCard";
 
 const useItems = () => {
     const [items, setItems] = useState(null);
@@ -8,39 +9,27 @@ const useItems = () => {
     useEffect(() => {
         fetch("https://fakestoreapi.com/products", {mode: "cors"})
             .then(response=>{
-                if(response.status >= 400){throw new Error(r.status)}
+                if(response.status >= 400){throw new Error(response.status)}
             return response.json()})
             .then(d => setItems(d))
             .catch((error) => setError(error))
             .finally(()=>setLoading(false));
-    },[Inventory]);
+    },[]);
     return {items, error, loading}
 }
 
-const ItemCard = ({item}) => {
-
-    return (
-        <>
-        <div className="item-card">
-            <img src={item.image} alt={item.description} />
-            <p>{item.title}</p>
-            {/* <p>i{item.description}</p> */}
-            <button onClick={()=>{}} >Add to Cart</button>
-        </div>
-        </>
-    )
-}
-
-const Inventory = () => {
+const Inventory = ({itemClickHandler}) => {
 
     const {items, error, loading} = useItems();
-    if(error)return <p>A Server error has occurred</p>
-    if(loading)return <p>Loading...</p>
 
+    if(error)return <p id="server-error">A Server error has occurred</p>
+    if(loading)return <p id="server-loading">Loading...</p>
+    console.log(items)
     return (
         <div data-testid="inventory">
-            <ItemCard item={items[0]}/>
-            <ItemCard item={items[1]}/>
+            {items.map((item) => 
+                <ItemCard item={item} itemClickHandler={itemClickHandler} />
+            )}
         </div>
     )
 }

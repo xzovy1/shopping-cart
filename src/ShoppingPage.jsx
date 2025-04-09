@@ -1,9 +1,8 @@
 import Cartbar from "./Cart";
 import { useState } from "react";
-import Inventory from "./Inventory";
 
 const ShoppingPage = () => {
-    const [inCart, setInCart] = useState([]);
+    const [inCart, setInCart] = useState(['']);
 
     return (
         <div data-testid="entered-store">

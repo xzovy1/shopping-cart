@@ -5,9 +5,8 @@ import Inventory from "../src/Inventory";
 import Cartbar from "../src/Cart";
 import ShoppingPage from "../src/ShoppingPage";
 import Storefront from "../src/Storefront";
-import userEvent from "@testing-library/user-event";
 
-test('cart bar and shopping page visible with zero items in cart',async ()=>{
+test('cart bar and shopping page visible with zero items in cart',()=>{
     render(
         <MemoryRouter >
           <Routes>

@@ -5,22 +5,15 @@ import useItems from "./useItems";
 import styles from "./modules/ShoppingPage.module.css";
 
 
-const ShoppingPage = () => {
-    const [inCart, setInCart] = useState([]);
-    function handleinCart(item){
-        console.log(item)
-        setInCart([
-            ...inCart,
-            {item}
-        ])
-    }
+const ShoppingPage = ({cartItems, updateCartItems }) => {
+
 
     return (
         <div data-testid="entered-store" >
             <h1>Welcome in!</h1>
             <div className={styles.shoppingPageContent}>
-                <Cartbar quantity={inCart.length} />
-                <Inventory itemClickHandler={handleinCart} fetchHook={useItems}/>
+                <Cartbar cartItems={cartItems} />
+                <Inventory updateCartItems={updateCartItems} fetchHook={useItems}/>
             </div>
         </div>
     )

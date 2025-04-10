@@ -2,7 +2,7 @@ import ItemCard from "./ItemCard";
 import styles from "./modules/Inventory.module.css"
 // import useItems from "./useItems";
 
-const Inventory = ({itemClickHandler, fetchHook}) => {
+const Inventory = ({updateCartItems, fetchHook}) => {
    const {items, error, loading} = fetchHook();
     // const {items, error, loading} = useItems();
 
@@ -12,7 +12,7 @@ const Inventory = ({itemClickHandler, fetchHook}) => {
     return (
         <div data-testid="inventory" className={styles.items}>
             {items.map((item) => 
-                <ItemCard item={item} itemClickHandler={itemClickHandler} />
+                <ItemCard item={item} itemClickHandler={updateCartItems} />
             )}
         </div>
     )

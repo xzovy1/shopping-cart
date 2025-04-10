@@ -1,17 +1,23 @@
-import Cartbar from "./Cart";
+import Cartbar from "./CartBar";
 import { useState } from "react";
 import Inventory from "./Inventory";
 import useItems from "./useItems";
 import styles from "./modules/ShoppingPage.module.css";
 
-
-const ShoppingPage = ({cartItems, updateCartItems }) => {
+const ShoppingPage = () => {
+    const [inCart, setInCart] = useState([]);
+    function handleInCart(item){
+        setInCart([
+            ...inCart,
+            {item}
+        ])
+    }
     return (
         <div data-testid="entered-store" >
             <h1>Welcome in!</h1>
             <div className={styles.shoppingPageContent}>
-                <Cartbar cartItems={cartItems} />
-                <Inventory updateCartItems={updateCartItems} fetchHook={useItems}/>
+                <Cartbar cartItems={inCart} />
+                <Inventory updateCartItems={handleInCart} fetchHook={useItems}/>
             </div>
         </div>
     )

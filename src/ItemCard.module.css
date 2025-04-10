@@ -1,0 +1,21 @@
+.itemCard{
+    width: 250px;
+    height: 250px;
+    border: 3px solid white;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    color: #242424;
+}
+
+img {
+    align-self: center;
+    width: auto;
+    height: auto;
+    max-width: 40%;
+    max-height: 50%;
+  }
+button{
+    justify-self: bottom;
+}

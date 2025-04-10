@@ -1,5 +1,6 @@
 import ItemCard from "./ItemCard";
-import useItems from "./useItems";
+import styles from "./Inventory.module.css"
+// import useItems from "./useItems";
 
 const Inventory = ({itemClickHandler, fetchHook}) => {
    const {items, error, loading} = fetchHook();
@@ -9,7 +10,7 @@ const Inventory = ({itemClickHandler, fetchHook}) => {
     if(loading)return <p id="server-loading">Loading...</p>
     console.log(items)
     return (
-        <div data-testid="inventory">
+        <div data-testid="inventory" className={styles.items}>
             {items.map((item) => 
                 <ItemCard item={item} itemClickHandler={itemClickHandler} />
             )}

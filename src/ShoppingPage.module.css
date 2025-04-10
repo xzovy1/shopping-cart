@@ -1,0 +1,5 @@
+.shoppingPageContent {
+    display: grid;
+    grid-template-columns: 1fr 12fr;
+    gap: 5px;
+}

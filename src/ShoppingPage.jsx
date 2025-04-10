@@ -2,6 +2,8 @@ import Cartbar from "./Cart";
 import { useState } from "react";
 import Inventory from "./Inventory";
 import useItems from "./useItems";
+import styles from "./ShoppingPage.module.css";
+
 
 const ShoppingPage = () => {
     const [inCart, setInCart] = useState([]);
@@ -14,10 +16,12 @@ const ShoppingPage = () => {
     }
 
     return (
-        <div data-testid="entered-store">
+        <div data-testid="entered-store" >
             <h1>Welcome in!</h1>
-            <Cartbar quantity={inCart.length} />
-            <Inventory itemClickHandler={handleinCart} fetchHook={useItems}/>
+            <div className={styles.shoppingPageContent}>
+                <Cartbar quantity={inCart.length} />
+                <Inventory itemClickHandler={handleinCart} fetchHook={useItems}/>
+            </div>
         </div>
     )
 }

@@ -6,6 +6,7 @@ import Cartbar from "../src/Cart";
 import ShoppingPage from "../src/ShoppingPage";
 import Storefront from "../src/Storefront";
 import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
 
 test('cart bar and shopping page visible with zero items in cart',async ()=>{
     render(

@@ -6,8 +6,6 @@ import styles from "./modules/ShoppingPage.module.css";
 
 
 const ShoppingPage = ({cartItems, updateCartItems }) => {
-
-
     return (
         <div data-testid="entered-store" >
             <h1>Welcome in!</h1>

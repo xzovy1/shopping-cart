@@ -8,8 +8,8 @@ const Inventory = ({updateCartItems, fetchHook}) => {
     if(loading)return <p id="server-loading">Loading...</p>
     return (
         <div data-testid="inventory" className={styles.items}>
-            {items.map((item, key) => 
-                <ItemCard item={item} key={key} itemClickHandler={updateCartItems} />
+            {items.map((item) => 
+                <ItemCard key={item.id}item={item} itemClickHandler={updateCartItems} />
             )}
         </div>
     )

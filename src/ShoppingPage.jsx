@@ -1,7 +1,6 @@
 import Cartbar from "./CartBar";
 import { useState } from "react";
 import Inventory from "./Inventory";
-import useItems from "./useItems";
 import styles from "./modules/ShoppingPage.module.css";
 
 const ShoppingPage = () => {
@@ -17,7 +16,7 @@ const ShoppingPage = () => {
             <h1>Welcome in!</h1>
             <div className={styles.shoppingPageContent}>
                 <Cartbar cartItems={inCart} />
-                <Inventory updateCartItems={handleInCart} fetchHook={useItems}/>
+                <Inventory updateCartItems={handleInCart}/>
             </div>
         </div>
     )

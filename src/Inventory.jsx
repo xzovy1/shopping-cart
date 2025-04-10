@@ -1,5 +1,5 @@
 import ItemCard from "./ItemCard";
-import styles from "./Inventory.module.css"
+import styles from "./modules/Inventory.module.css"
 // import useItems from "./useItems";
 
 const Inventory = ({itemClickHandler, fetchHook}) => {

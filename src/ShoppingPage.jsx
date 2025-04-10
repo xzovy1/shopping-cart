@@ -2,7 +2,7 @@ import Cartbar from "./Cart";
 import { useState } from "react";
 import Inventory from "./Inventory";
 import useItems from "./useItems";
-import styles from "./ShoppingPage.module.css";
+import styles from "./modules/ShoppingPage.module.css";
 
 
 const ShoppingPage = () => {

@@ -4,7 +4,7 @@ import Inventory from "./Inventory";
 import styles from "./modules/ShoppingPage.module.css";
 
 const ShoppingPage = () => {
-    const [inCart, setInCart] = useState([]);
+    const [inCart, setInCart] = useState(['']);
     function handleInCart(item){
         setInCart([
             ...inCart,

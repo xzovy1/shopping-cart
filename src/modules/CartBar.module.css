@@ -1,0 +1,24 @@
+
+.cartBar h3{
+    margin: 0;
+    align-self: center;
+}
+
+.cart{
+    position: sticky;
+    top: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border: 1px solid rgb(201, 201, 201);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.checkoutButton {
+    width: 100%;
+    justify-content: center;
+    align-self: center;
+
+}

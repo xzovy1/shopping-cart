@@ -7,10 +7,10 @@ import ShoppingPage from "../src/ShoppingPage";
 import Storefront from "../src/Storefront";
 
 describe("App component", ()=>{
-    it("renders store front page with an enter button", ()=>{
+    it("renders front page with an enter button", ()=>{
         render(
             <MemoryRouter>
-              <Storefront />
+              <App />
             </MemoryRouter>
           );
 
@@ -33,6 +33,8 @@ describe("App component", ()=>{
 
         await user.click(button);
         expect(screen.getByTestId("entered-store")).toBeInTheDocument();
+        const emptyCartMessage = await screen.findByText(/looks like the cart is empty/i);
+        expect(emptyCartMessage).toBeInTheDocument();
+        expect(screen.getByTestId("cart-bar")).toBeInTheDocument();
     })
-})
-
+  })

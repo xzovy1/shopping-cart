@@ -4,7 +4,6 @@ import { render, screen } from "@testing-library/react";
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Routes, Route } from "react-router-dom";
 import ShoppingPage from "../src/ShoppingPage";
-import Storefront from "../src/Storefront";
 
 describe("App component", ()=>{
     it("renders front page with an enter button", ()=>{

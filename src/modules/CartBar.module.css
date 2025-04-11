@@ -1,12 +1,6 @@
-
-.cartBar h3{
-    margin: 0;
-    align-self: center;
-}
-
 .cart{
     position: sticky;
-    top: 150px;
+    top: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,9 +10,17 @@
     padding: 10px;
 }
 
+.cart h3{
+    margin: 0;
+    align-self: center;
+}
+
+.cart p{
+    align-self:  center;
+}
+
 .checkoutButton {
     width: 100%;
     justify-content: center;
     align-self: center;
-
 }

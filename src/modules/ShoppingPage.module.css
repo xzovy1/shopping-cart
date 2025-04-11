@@ -3,3 +3,17 @@
     grid-template-columns: 20% 80%;
     gap: 10px;
 }
+
+.header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    margin: 0px;
+}
+
+.header > p {
+    align-self: flex-end;
+}

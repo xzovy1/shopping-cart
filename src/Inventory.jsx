@@ -20,11 +20,12 @@ const useItems = () => {
     return {items, error, loading}
 }
 
-const Inventory = ({updateCartItems}) => {
-   const {items, error, loading} = useItems();
+const Inventory = ({updateCartItems, updateLoadedItems}) => {
+    const {items, error, loading} = useItems();
 
-   if(loading)return <p id="server-loading">Loading...</p>
+    if(loading)return <p id="server-loading">Loading...</p>
     if(error)return <p id="server-error">A Server error has occurred</p>
+    updateLoadedItems(items.length)
     return (
         <div data-testid="inventory" className={styles.items}>
             {items.map((item) => 

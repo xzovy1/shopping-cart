@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 import styles from './modules/Cartbar.module.css'
 const Cartbar = ({cartItems}) => {
-    
+    console.log(cartItems.map(item=>console.log(item.title)))
     return(
         <div data-testid="cart-bar" className={styles.cartBar}>
             <div className={styles.cart}>
@@ -10,7 +11,7 @@ const Cartbar = ({cartItems}) => {
                     <p>Looks like the cart is empty!</p>  
                 : <>
                     <ul>
-                        <li>test</li>
+                        {cartItems.map((item, index) => {return <li key={index}>{item.item.title}</li>})}
                     </ul>
                     <button className={styles.checkoutButton}>Checkout</button>
                 </>

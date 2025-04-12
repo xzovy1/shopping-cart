@@ -22,7 +22,7 @@ const useItems = () => {
 
 const Inventory = ({updateCartItems}) => {
     const {items, error, loading} = useItems();
-
+    
     if(loading)return <p id="server-loading">Loading...</p>
     if(error)return <p id="server-error">A Server error has occurred</p>
 

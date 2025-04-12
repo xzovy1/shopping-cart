@@ -1,21 +1,68 @@
 import { expect, test } from "vitest";
-import { render, screen } from "@testing-library/react";
-import Cartbar from "../src/CartBar";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import ShoppingPage from "../src/ShoppingPage";
 
-test("cart bar displays empty cart message when empty", ()=> {
-  render(<>
-    <Cartbar cartItems={[]}/>
-  </>)
-  expect(screen.getByText('Looks like the cart is empty!')).toBeInTheDocument();
+test("loads all 20 items eventually", async ()=>{
+  render(
+   <ShoppingPage />
+  );
+
+  expect(screen.getByTestId("entered-store")).toBeInTheDocument();
+  const emptyCartMessage = await screen.findByText(/looks like the cart is empty/i);
+  expect(emptyCartMessage).toBeInTheDocument();
+  expect(screen.getByTestId("cart-bar")).toBeInTheDocument();
+  await waitFor(()=>{
+    expect(screen.getByTestId("inventory")).toBeInTheDocument();
+    const imageQuantity = screen.getAllByRole('img').length
+    const itemsLoaded = screen.getByTestId('quantity').textContent
+    expect(itemsLoaded).toBe("20 items loaded")
+    expect(imageQuantity).toEqual(20) //check if 20 images loaded
+  })
+});
+
+test("'Add to Cart' button updates Cartbar", async()=>{
+  const user = userEvent.setup();
+  render(<ShoppingPage />)
+
+  await waitFor(()=>{
+    expect(screen.getByTestId("inventory")).toBeInTheDocument();
+    const imageQuantity = screen.getAllByRole('img').length
+    const itemsLoaded = screen.getByTestId('quantity').textContent
+    expect(itemsLoaded).toBe("20 items loaded")
+    expect(imageQuantity).toEqual(20) //check if 20 images loaded
+  })
+  const firstItem = screen.getAllByTestId("item")[0];
+  const addToCartButton = firstItem.querySelector('button');
+
+  await user.click(addToCartButton);
+  // screen.debug();
+  const li = screen.queryByTestId("item-added")
+  const emptyCartMessage = screen.queryByText("Looks like the cart is empty!")
+  expect(li).toBeInTheDocument();
+  expect(emptyCartMessage).not.toBeInTheDocument();
 })
 
-test("cart bar displaying list item when cart has one or more item", () => {
-  const testItems = [
-    {name: "Test Item 1", id: 1, url: 'testimg.img'}
-  ]
+test("clicking 'Add to Cart' in Inventory add the same item adds updates quantity property", async()=>{
+  const user = userEvent.setup();
+  render(<ShoppingPage />)
 
-    render(<Cartbar cartItems={testItems} />)
+  await waitFor(()=>{
+    expect(screen.getByTestId("inventory")).toBeInTheDocument();
+    const imageQuantity = screen.getAllByRole('img').length
+    const itemsLoaded = screen.getByTestId('quantity').textContent
+    expect(itemsLoaded).toBe("20 items loaded")
+    expect(imageQuantity).toEqual(20) //check if 20 images loaded
+  })
+  const firstItem = screen.getAllByTestId("item")[0];
+  const addToCartButton = firstItem.querySelector('button');
 
-    expect(screen.queryByText('Looks like the cart is empty!')).not.toBeInTheDocument();
-    expect(screen.getByRole('listitem')).toBeInTheDocument();
+  await user.click(addToCartButton);
+  // screen.debug();
+  
+  await user.click(addToCartButton);
+  const li = screen.getAllByTestId("item-added")
+
+  expect(li.length).toBe(1);
+  screen.debug();
 })

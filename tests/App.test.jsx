@@ -1,7 +1,6 @@
 import App from "../src/App"
 import { describe, it, expect } from "vitest";
-import { render, screen } from "@testing-library/react";
-import userEvent from '@testing-library/user-event';
+import { render, screen, fireEvent } from "@testing-library/react";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
 import ShoppingPage from "../src/ShoppingPage";
 
@@ -27,13 +26,10 @@ describe("App component", ()=>{
 
         expect(screen.getByText(/Welcome to The Mart Cart/i)).toBeInTheDocument();
 
-        const user = userEvent.setup();
-        const button = screen.getByRole("button")
-
-        await user.click(button);
+        fireEvent.click(screen.getByText('Enter'))
         expect(screen.getByTestId("entered-store")).toBeInTheDocument();
         const emptyCartMessage = await screen.findByText(/looks like the cart is empty/i);
         expect(emptyCartMessage).toBeInTheDocument();
         expect(screen.getByTestId("cart-bar")).toBeInTheDocument();
     })
-  })
+})

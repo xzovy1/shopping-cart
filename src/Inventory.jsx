@@ -30,9 +30,9 @@ const Inventory = ({updateCartItems}) => {
         <>
             <div data-testid="inventory" className={styles.items}>
                 {items.map((item) => 
-                    <ItemCard key={item.id}item={item} itemClickHandler={updateCartItems} />
+                    <ItemCard key={item.id} item={item} itemClickHandler={updateCartItems} />
                 )}
-                <p>{!items.length ? '' : items.length + " items loaded"}</p>
+                <p data-testid={'quantity'}>{!items.length ? '' : items.length + " items loaded"}</p>
             </div>
         </>
     )

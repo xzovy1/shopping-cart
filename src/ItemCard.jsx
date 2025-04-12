@@ -2,7 +2,7 @@ import styles from './modules/ItemCard.module.css';
 
 const ItemCard = ({item, itemClickHandler}) => {
     return (
-        <div className={styles.itemCard} key={item.id}>
+        <div className={styles.itemCard} key={item.id} data-testid={"item"}>
             <div className={styles.imageDiv}>
                 <img src={item.image} alt={item.description} />
             </div>

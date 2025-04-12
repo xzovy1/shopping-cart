@@ -8,7 +8,7 @@ const ShoppingPage = () => {
     function handleInCart(item){
         setInCart([
             ...inCart,
-            {item}
+            item
         ])
     }
     return (

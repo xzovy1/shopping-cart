@@ -16,7 +16,7 @@ const Cartbar = ({cartItems}) => {
                                  </li>})
                         }
                     </ul>
-                    <button className={styles.checkoutButton}>Checkout</button>
+                    <Link to="/checkout"><button className={styles.checkoutButton}>Checkout</button></Link>
                   </>
                 }     
             </div>

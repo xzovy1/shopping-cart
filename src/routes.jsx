@@ -1,4 +1,5 @@
 import App from "./App";
+import Checkout from "./Checkout";
 import ShoppingPage from "./ShoppingPage";
 
 const routes = [
@@ -9,6 +10,10 @@ const routes = [
     {
         path: "shopping-page",
         element: <ShoppingPage />,
+    },
+    {
+        path: "checkout",
+        element: <Checkout />
     }
 ];
 export default routes;

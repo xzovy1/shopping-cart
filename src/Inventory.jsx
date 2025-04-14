@@ -13,7 +13,10 @@ const useItems = () => {
             .then(response=>{
                 if(response.status >= 400){throw new Error(response.status)}
             return response.json()})
-            .then(d => setItems(d))
+            .then(items => {
+                items.forEach(item => item.quantity = 0);
+                return setItems(items)
+            })
             .catch((error) => setError(error))
             .finally(()=>setLoading(false));
     },[]);

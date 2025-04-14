@@ -6,13 +6,14 @@ const Cartbar = ({cartItems}) => {
             <div className={styles.cart}>
                 <h3>Your Cart:</h3> 
                 {
-                (cartItems.length == 0) ? 
+                (cartItems[0].id == undefined) ? 
                     <p>Looks like the cart is empty!</p>  
                 : <>
                     <ul>
                         {cartItems.map((item, index) => {
+                            // item.quantity = 0;
                             return <li key={index} data-testid="item-added">
-                                   <p>{item.title}</p> <p>{item.quantity}</p>
+                                   <p>{item.title}</p> <p data-testid='quantity'>{item.quantity + 1}</p>
                                  </li>})
                         }
                     </ul>

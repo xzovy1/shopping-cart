@@ -21,7 +21,7 @@ test("loads all 20 items eventually", async ()=>{
   })
 });
 
-test("'Add to Cart' button updates Cartbar", async()=>{
+test("Add to Cart button updates Cartbar", async()=>{
   const user = userEvent.setup();
   render(<ShoppingPage />)
 
@@ -36,7 +36,7 @@ test("'Add to Cart' button updates Cartbar", async()=>{
   const addToCartButton = firstItem.querySelector('button');
 
   await user.click(addToCartButton);
-  // screen.debug();
+
   const li = screen.queryByTestId("item-added")
   const emptyCartMessage = screen.queryByText("Looks like the cart is empty!")
   expect(li).toBeInTheDocument();
@@ -48,21 +48,33 @@ test("clicking 'Add to Cart' in Inventory add the same item adds updates quantit
   render(<ShoppingPage />)
 
   await waitFor(()=>{
-    expect(screen.getByTestId("inventory")).toBeInTheDocument();
-    const imageQuantity = screen.getAllByRole('img').length
-    const itemsLoaded = screen.getByTestId('quantity').textContent
-    expect(itemsLoaded).toBe("20 items loaded")
-    expect(imageQuantity).toEqual(20) //check if 20 images loaded
+    screen.getByTestId("inventory")
   })
   const firstItem = screen.getAllByTestId("item")[0];
   const addToCartButton = firstItem.querySelector('button');
 
   await user.click(addToCartButton);
-  // screen.debug();
-  
-  await user.click(addToCartButton);
-  const li = screen.getAllByTestId("item-added")
 
+  const li = screen.getAllByTestId("item-added")
   expect(li.length).toBe(1);
-  screen.debug();
+  expect(screen.getAllByTestId("quantity")[0].textContent).toBe("1"); //check quantity of first item in cart
+  await user.click(addToCartButton);
+  expect(screen.getAllByTestId("quantity")[0].textContent).toBe("2");//check quantity of first item in cart
+})
+
+test("adding a second item adds another list item to the cart bar", async()=>{
+  const user = userEvent.setup();
+
+  render(<ShoppingPage />)
+  await waitFor(()=>{
+    screen.getByTestId("inventory")
+  })
+  const firstItem = screen.getAllByTestId("item")[0];
+  const secondItem = screen.getAllByTestId("item")[1];
+
+  await user.click(firstItem.querySelector('button'));
+  await user.click(secondItem.querySelector('button'));
+
+  expect(screen.queryByRole('list').childElementCount).toBe(2)
+  
 })

@@ -7,32 +7,23 @@ const ShoppingPage = () => {
     const [inCart, setInCart] = useState([{}]);
     function handleInCart(item){
 
-    function addToCart(){
-       if( Object.keys(inCart[0]).length > 0) setInCart([...inCart, item])
-        else{setInCart([item])}
-    }   
+        function addToCart(){
+        if( Object.keys(inCart[0]).length > 0) setInCart([...inCart, item])
+            else{setInCart([item])}
+        }   
 
-    function updateQuantity(){
-
-    setInCart(
-        inCart.map(e => {
-            //if in cart, update the item
-            if(e.id === item.id){
-                return {quantity: e.quantity++, ...e} //update quantity
-            }
-            // if not in cart it's returning an arr with the single item in it.
-            // i want to return an array with the cart in it
-            else if(e.id !== item.id){
-                return item
-            }
+        function updateQuantity(){
+            setInCart(
+                inCart.map(e => {
+                    if(e.id === item.id)return { ...e, quantity: e.quantity + 1}
+                    else{return e}
+                })
+            ) 
         }
-        
-    )) 
-    }
-    inCart.map(e => e.id == item.id ? updateQuantity() : addToCart())
 
-    // updateQuantity();
+    inCart.find(e => e.id == item.id) == undefined ? addToCart() : updateQuantity();
     }
+    
     return (
         <div data-testid="entered-store" >
             <div className={styles.header}>

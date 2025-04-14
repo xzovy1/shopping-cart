@@ -43,7 +43,7 @@ test("Add to Cart button updates Cartbar", async()=>{
   expect(emptyCartMessage).not.toBeInTheDocument();
 })
 
-test("clicking 'Add to Cart' in Inventory add the same item adds updates quantity property", async()=>{
+test("clicking 'Add to Cart' on the same item updates quantity property by one", async()=>{
   const user = userEvent.setup();
   render(<ShoppingPage />)
 
@@ -77,4 +77,39 @@ test("adding a second item adds another list item to the cart bar", async()=>{
 
   expect(screen.queryByRole('list').childElementCount).toBe(2)
   
+})
+
+test("add every item to the cart once", async ()=>{
+  const user = userEvent.setup();
+  render(<ShoppingPage />);
+  await waitFor(()=>{
+    screen.getByTestId("inventory")
+  })
+
+  let items = screen.getAllByTestId("item").length - 1
+  for(let i = 0; i <= items; i++){
+    const item = screen.getAllByTestId("item")[i];
+    console.log(item)
+    await user.click(item.querySelector('button'));
+  }
+
+  expect(screen.queryByRole('list').childElementCount).toBe(20)
+})
+
+test('increasing the quantity of one item while having more than one item in the cart', async ()=>{
+  const user = userEvent.setup();
+  render(<ShoppingPage />);
+  await waitFor(()=>{
+    screen.getByTestId("inventory")
+  })
+
+  const firstItem = screen.getAllByTestId("item")[0];
+  const secondItem = screen.getAllByTestId("item")[1];
+
+  await user.click(firstItem.querySelector('button'));
+  await user.click(secondItem.querySelector('button'));
+  await user.click(firstItem.querySelector('button'));
+
+  expect(screen.queryByRole('list').childElementCount).toBe(2)
+
 })

@@ -14,7 +14,7 @@ const Cartbar = ({cartItems}) => {
                     <ul>
                         {cartItems.map((item, index) => {
                             return <li key={index} data-testid="item-added">
-                                   <p>{item.title}</p> <p data-testid='quantity'>x{item.quantity + 1}</p>
+                                   <p>{item.title}</p> <p data-testid='quantity'>x{item.quantity}</p>
                                  </li>})
                         }
                     </ul>

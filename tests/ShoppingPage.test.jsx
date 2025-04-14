@@ -89,7 +89,6 @@ test("add every item to the cart once", async ()=>{
   let items = screen.getAllByTestId("item").length - 1
   for(let i = 0; i <= items; i++){
     const item = screen.getAllByTestId("item")[i];
-    console.log(item)
     await user.click(item.querySelector('button'));
   }
 
@@ -105,11 +104,39 @@ test('increasing the quantity of one item while having more than one item in the
 
   const firstItem = screen.getAllByTestId("item")[0];
   const secondItem = screen.getAllByTestId("item")[1];
+  const thirdItem = screen.getAllByTestId("item")[2];
 
   await user.click(firstItem.querySelector('button'));
   await user.click(secondItem.querySelector('button'));
   await user.click(firstItem.querySelector('button'));
+  await user.click(thirdItem.querySelector('button'));
+  await user.click(thirdItem.querySelector('button'));
+  await user.click(thirdItem.querySelector('button'));
 
-  expect(screen.queryByRole('list').childElementCount).toBe(2)
+  expect(screen.queryByRole('list').childElementCount).toBe(3);
+  expect(screen.getAllByTestId('quantity')[0].textContent).toBe("2")
+  expect(screen.getAllByTestId('quantity')[2].textContent).toBe("3")
 
 })
+
+test("should properly increment items with large quantities", async () => {
+  const user = userEvent.setup();
+  render(<ShoppingPage />);
+  
+  await waitFor(() => {
+    screen.getByTestId("inventory");
+  });
+  
+  const firstItem = screen.getAllByTestId("item")[0];
+  const secondItem = screen.getAllByTestId("item")[1];
+  const firstItemButton = firstItem.querySelector('button');
+  const secondItemButton = secondItem.querySelector('button');
+  
+  for (let i = 0; i < 100; i++) {
+    await user.click(firstItemButton);
+    await user.click(secondItemButton);
+  }
+
+  expect(screen.getAllByTestId("quantity")[0].textContent).toBe("100");
+  expect(screen.getAllByTestId("quantity")[1].textContent).toBe("100");
+});

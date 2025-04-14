@@ -1,6 +1,8 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './modules/Cartbar.module.css'
-const Cartbar = ({cartItems}) => {
+const Cartbar = ({cartItems, updateCartItems}) => {
+
+    console.log(cartItems)
     return(
         <div data-testid="cart-bar" className={styles.cartBar}>
             <div className={styles.cart}>
@@ -16,7 +18,7 @@ const Cartbar = ({cartItems}) => {
                                  </li>})
                         }
                     </ul>
-                    <Link to="/checkout"><button className={styles.checkoutButton}>Checkout</button></Link>
+                    <Link to="/checkout" state={{cartItems}}><button className={styles.checkoutButton} data-testid="checkout-button">Checkout</button></Link>
                   </>
                 }     
             </div>

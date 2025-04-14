@@ -31,7 +31,7 @@ const ShoppingPage = () => {
 
             </div>
             <div className={styles.shoppingPageContent}>
-                <Cartbar cartItems={inCart} />
+                <Cartbar cartItems={inCart} updateCartItems={handleInCart}/>
                 <Inventory updateCartItems={handleInCart} />
             </div>
         </div>

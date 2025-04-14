@@ -25,3 +25,25 @@
     justify-content: center;
     align-self: center;
 }
+
+.cart > ul {
+    list-style: none;
+    overflow-y: scroll;
+    max-height: 400px;
+
+}
+
+.cart li {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+}
+
+::-webkit-scrollbar{
+    background-color: rgb(227, 227, 227);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: black;
+    border-radius: 10px;
+}

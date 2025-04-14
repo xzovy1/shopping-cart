@@ -4,12 +4,12 @@ import Inventory from "./Inventory";
 import styles from "./modules/ShoppingPage.module.css";
 
 const ShoppingPage = () => {
-    const [inCart, setInCart] = useState([{}]);
+    const [inCart, setInCart] = useState([]);
     function handleInCart(item){
 
         function addToCart(){
-        if( Object.keys(inCart[0]).length > 0) setInCart([...inCart, item])
-            else{setInCart([item])}
+        if( inCart.length > 0) return setInCart([...inCart, item])
+            else{return setInCart([item])}
         }   
 
         function updateQuantity(){
@@ -20,7 +20,6 @@ const ShoppingPage = () => {
                 })
             ) 
         }
-
     inCart.find(e => e.id == item.id) == undefined ? addToCart() : updateQuantity();
     }
     

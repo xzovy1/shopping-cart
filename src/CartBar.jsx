@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import styles from './modules/Cartbar.module.css'
-const Cartbar = ({cartItems, updateCartItems}) => {
+const Cartbar = ({cartItems}) => {
 
     console.log(cartItems)
     return(
@@ -8,7 +8,7 @@ const Cartbar = ({cartItems, updateCartItems}) => {
             <div className={styles.cart}>
                 <h3>Your Cart:</h3> 
                 {
-                (cartItems[0].id == undefined) ? 
+                (cartItems[0] == undefined) ? 
                     <p>Looks like the cart is empty!</p>  
                 : <>
                     <ul>

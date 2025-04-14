@@ -30,9 +30,9 @@ const Cartbar = ({cartItems, updateCartItems}) => {
                          loadCart(cartItems)
                         }
                     </ul>
-                    <Link to="/checkout" state={{cartItems}}><button className={styles.checkoutButton} data-testid="checkout-button">Checkout</button></Link>
                   </>
                 }     
+                <Link to="/checkout" state={{cartItems}}><button className={styles.checkoutButton} data-testid="checkout-button">Checkout</button></Link>
             </div>
         </div>
     )

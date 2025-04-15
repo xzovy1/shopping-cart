@@ -2,11 +2,12 @@ import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 
 const Checkout = () => {
-    const inCart = useLocation().state.cartItems;
-    const [cart, setCart] = useState(inCart);
+    const location = useLocation();
+    const cartItems = location.state.cartItems
+    console.log(cartItems)
     function changeQuantity(item, increment){
         if(increment){
-            setCart(
+            setCartItems(
                 inCart.map(e => {
                     if(e.id === item.id)return { ...e, quantity: item.quantity + 1}
                     else{return e}
@@ -14,7 +15,7 @@ const Checkout = () => {
                 )
             }
         else{
-            setCart(
+            setCartItems(
                 inCart.map(e => {
                     if(e.id === item.id)return { ...e, quantity: item.quantity - 1}
                     else{return e}
@@ -26,20 +27,21 @@ const Checkout = () => {
         <>
             <h1>Confirm your order</h1>
             <ul>
-                {cart.map(item => 
+                {cartItems.map(item => 
                     <li key={item.id}>
                         {item.title} x{item.quantity}
-                        <p>
+                        {/* <p>
                             <button onClick={()=>changeQuantity(item, true)}>+</button>
                             <button onClick={()=>changeQuantity(item, false)}>-</button>
-                        </p>
+                        </p> */}
                     </li>
                 )}
             </ul>
             <div>
                 Forget something?
-                <Link to="/shopping-page" state={{cart}}> Return to Shopping Page</Link>
+                <Link to="/shopping-page" state={{cartItems}}> Return to Shopping Page</Link>
             </div>
+                <Link to="/order-complete"><button>Place Order</button></Link>
         </>
     )
 }

@@ -1,15 +1,9 @@
 import { Link, useLocation } from 'react-router-dom';
 import styles from './modules/Cartbar.module.css'
-const Cartbar = ({cartItems, updateCartItems}) => {
-    const location = useLocation().state;
-    const {cart} = location
-    if(cart.length > 0){
-        // updateCartItems(cart);
-        console.log(cart)
-    }
+let recievedFromCheckout = false;
+const Cartbar = ({cartItems}) => {
+
     function loadCart(cart){
-        console.log('load cart fn',cart)
-        // updateCartItems(cart);
        return cart.map((item, index) => {
             return <li key={index} data-testid="item-added">
                    <p>{item.title}</p> <p data-testid='quantity'>x{item.quantity}</p>
@@ -22,7 +16,6 @@ const Cartbar = ({cartItems, updateCartItems}) => {
                 <h3>Your Cart:</h3> 
                 {
                 (cartItems[0] == undefined) ?
-                 cart.length > 0 ? loadCart(cart) : 
                 ( <p>Looks like the cart is empty!</p> )     
                 : <>
                     <ul>

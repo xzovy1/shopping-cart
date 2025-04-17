@@ -14,7 +14,7 @@ const useItems = () => {
                 if(response.status >= 400){throw new Error(response.status)}
             return response.json()})
             .then(items => {
-                items.forEach(item => item.quantity = 1);
+                items.forEach(item => {item.quantity = 1; item.price = item.price.toFixed(2)});
                 return setItems(items)
             })
             .catch((error) => setError(error))

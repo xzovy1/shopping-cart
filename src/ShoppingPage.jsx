@@ -1,12 +1,19 @@
 import Cartbar from "./CartBar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Inventory from "./Inventory";
 import styles from "./modules/ShoppingPage.module.css";
 import { useLocation } from "react-router-dom";
 
 const ShoppingPage = () => {
+    let location = useLocation();
+    const [inCart, setInCart] = useState([]);
 
-    const [inCart, setInCart] = useState(useLocation().state ? useLocation().state.cartItems : []);
+    useEffect(()=>{
+        if(location.state != null){
+            setInCart(location.state.cartItems)
+        }
+    },[location])
+
     function handleInCart(item){
 
         function addToCart(){
@@ -24,7 +31,7 @@ const ShoppingPage = () => {
         }
     inCart.find(e => e.id == item.id) == undefined ? addToCart() : updateQuantity();
     }
-    console.log(inCart)
+
     return (
         <div data-testid="entered-store" >
             <div className={styles.header}>

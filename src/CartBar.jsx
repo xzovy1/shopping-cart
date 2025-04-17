@@ -1,6 +1,5 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styles from './modules/Cartbar.module.css'
-let recievedFromCheckout = false;
 const Cartbar = ({cartItems}) => {
 
     function loadCart(cart){

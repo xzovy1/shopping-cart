@@ -3,37 +3,38 @@ import { useState } from "react";
 
 const Checkout = () => {
     const location = useLocation();
-    const cartItems = location.state.cartItems
-    console.log(cartItems)
+    // const cartItems = location.state?.cartItems || [];
+    const [cartItems, setCartItems] = useState(location.state?.cartItems || [])
     function changeQuantity(item, increment){
         if(increment){
             setCartItems(
-                inCart.map(e => {
-                    if(e.id === item.id)return { ...e, quantity: item.quantity + 1}
-                    else{return e}
-                })
-                )
+                
+                    cartItems.map(e => {
+                        if(e.id === item.id)return { ...e, quantity: e.quantity + 1}
+                        else{return e}
+                    })
+            )
             }
         else{
             setCartItems(
-                inCart.map(e => {
-                    if(e.id === item.id)return { ...e, quantity: item.quantity - 1}
+                cartItems.map(e => {
+                    if(e.id === item.id)return { ...e, quantity: e.quantity - 1}
                     else{return e}
                 })
                 )
         }
     }
     return (
-        <>
+        <div data-testid="checkout">
             <h1>Confirm your order</h1>
             <ul>
                 {cartItems.map(item => 
                     <li key={item.id}>
                         {item.title} x{item.quantity}
-                        {/* <p>
+                        <p>
                             <button onClick={()=>changeQuantity(item, true)}>+</button>
                             <button onClick={()=>changeQuantity(item, false)}>-</button>
-                        </p> */}
+                        </p>
                     </li>
                 )}
             </ul>
@@ -41,8 +42,8 @@ const Checkout = () => {
                 Forget something?
                 <Link to="/shopping-page" state={{cartItems}}> Return to Shopping Page</Link>
             </div>
-                <Link to="/order-complete"><button>Place Order</button></Link>
-        </>
+                {cartItems.length > 0 ? <Link to="/order-complete"><button>Place Order</button></Link> : ''}
+        </div>
     )
 }
 

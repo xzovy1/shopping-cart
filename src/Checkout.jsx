@@ -48,7 +48,6 @@ const Checkout = () => {
                 <Link to="/shopping-page" state={{cartItems}}> Return to Shopping Page</Link>
             </div>
                 {cartItems.length > 0 ? <Link to="/order-complete"><button>Place Order</button></Link> : ''}
-                
         </div>
     )
 }

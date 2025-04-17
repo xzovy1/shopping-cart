@@ -71,7 +71,7 @@ test("should be unable to place an order with an item that has a quantity of 0",
 test("order total should display total value of items in the cart", ()=>{
   renderWithMemRouter(dummyCart);
   const orderTotal = screen.getByTestId("order-total").textContent
-  expect(orderTotal).toBe("Total: $11")
+  expect(orderTotal).toBe("Total: $11.00")
 })
 
 test("Place order button should not be visible with no items in cart", async ()=>{

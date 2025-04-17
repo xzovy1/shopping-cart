@@ -2,7 +2,8 @@ import { expect, test } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import ShoppingPage from "../src/ShoppingPage";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, MemoryRouter, Route, Routes } from "react-router-dom";
+import Checkout from "../src/Checkout";
 
 test("loads all 20 items eventually", async ()=>{
   render(
@@ -167,3 +168,47 @@ test("should properly increment items with large quantities", async () => {
   expect(screen.getAllByTestId("quantity")[0].textContent).toBe("x100");
   expect(screen.getAllByTestId("quantity")[1].textContent).toBe("x100");
 });
+
+test("clicking checkout should go to /checkout page and display and empty cart",async ()=>{
+  const user = userEvent.setup();
+  render(
+    <MemoryRouter initialEntries={['/shopping-page']}>
+      <Routes>
+        <Route path="/shopping-page" element={<ShoppingPage />} />
+        <Route path="/checkout" element={<Checkout />} />
+      </Routes>
+    </MemoryRouter>
+  );
+
+  await user.click(screen.getByRole("link"));
+  await waitFor(()=>screen.getByRole("heading", {name: /Confirm Your Order/i}))
+  expect(screen.getByRole("heading", {name: /Confirm Your Order/i})).toBeInTheDocument();
+  const list = screen.getByRole("list")
+  expect(list.children.length).toBe(0);
+  screen.debug();
+})
+
+test("clicking checkout should go to /checkout page and display every item in the cart",async ()=>{
+  const user = userEvent.setup();
+  render(
+    <MemoryRouter initialEntries={['/shopping-page']}>
+      <Routes>
+        <Route path="/shopping-page" element={<ShoppingPage />} />
+        <Route path="/checkout" element={<Checkout />} />
+      </Routes>
+    </MemoryRouter>
+  );
+  await waitFor(()=>screen.getByTestId('inventory'));
+  let items = screen.getAllByTestId("item").length - 1
+  for(let i = 0; i <= items; i++){
+    const item = screen.getAllByTestId("item")[i];
+    await user.click(item.querySelector('button'));
+  }
+  
+  await user.click(screen.getByRole("link"));
+  await waitFor(()=>screen.getByRole("heading", {name: /Confirm Your Order/i}))
+  expect(screen.getByRole("heading", {name: /Confirm Your Order/i})).toBeInTheDocument();
+  const list = screen.getByRole("list")
+  expect(list.children.length).toBe(20);
+  screen.debug();
+})

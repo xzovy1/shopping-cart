@@ -2,10 +2,13 @@ import { expect, test } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import ShoppingPage from "../src/ShoppingPage";
+import { BrowserRouter } from "react-router-dom";
 
 test("loads all 20 items eventually", async ()=>{
   render(
-   <ShoppingPage />
+    <BrowserRouter>
+      <ShoppingPage />
+    </BrowserRouter>
   );
 
   expect(screen.getByTestId("entered-store")).toBeInTheDocument();
@@ -23,7 +26,11 @@ test("loads all 20 items eventually", async ()=>{
 
 test("Add to Cart button updates Cartbar", async()=>{
   const user = userEvent.setup();
-  render(<ShoppingPage />)
+  render(
+    <BrowserRouter>
+      <ShoppingPage />
+    </BrowserRouter>
+  );
 
   await waitFor(()=>{
     expect(screen.getByTestId("inventory")).toBeInTheDocument();
@@ -45,7 +52,11 @@ test("Add to Cart button updates Cartbar", async()=>{
 
 test("clicking 'Add to Cart' on the same item updates quantity property by one", async()=>{
   const user = userEvent.setup();
-  render(<ShoppingPage />)
+  render(
+    <BrowserRouter>
+      <ShoppingPage />
+    </BrowserRouter>
+  );
 
   await waitFor(()=>{
     screen.getByTestId("inventory")
@@ -57,15 +68,19 @@ test("clicking 'Add to Cart' on the same item updates quantity property by one",
 
   const li = screen.getAllByTestId("item-added")
   expect(li.length).toBe(1);
-  expect(screen.getAllByTestId("quantity")[0].textContent).toBe("1"); //check quantity of first item in cart
+  expect(screen.getAllByTestId("quantity")[0].textContent).toBe("x1"); //check quantity of first item in cart
   await user.click(addToCartButton);
-  expect(screen.getAllByTestId("quantity")[0].textContent).toBe("2");//check quantity of first item in cart
+  expect(screen.getAllByTestId("quantity")[0].textContent).toBe("x2");//check quantity of first item in cart
 })
 
 test("adding a second item adds another list item to the cart bar", async()=>{
   const user = userEvent.setup();
 
-  render(<ShoppingPage />)
+  render(
+    <BrowserRouter>
+      <ShoppingPage />
+    </BrowserRouter>
+  );
   await waitFor(()=>{
     screen.getByTestId("inventory")
   })
@@ -81,7 +96,11 @@ test("adding a second item adds another list item to the cart bar", async()=>{
 
 test("add every item to the cart once", async ()=>{
   const user = userEvent.setup();
-  render(<ShoppingPage />);
+  render(
+    <BrowserRouter>
+      <ShoppingPage />
+    </BrowserRouter>
+  );
   await waitFor(()=>{
     screen.getByTestId("inventory")
   })
@@ -97,7 +116,11 @@ test("add every item to the cart once", async ()=>{
 
 test('increasing the quantity of one item while having more than one item in the cart', async ()=>{
   const user = userEvent.setup();
-  render(<ShoppingPage />);
+  render(
+    <BrowserRouter>
+      <ShoppingPage />
+    </BrowserRouter>
+  );
   await waitFor(()=>{
     screen.getByTestId("inventory")
   })
@@ -114,14 +137,18 @@ test('increasing the quantity of one item while having more than one item in the
   await user.click(thirdItem.querySelector('button'));
 
   expect(screen.queryByRole('list').childElementCount).toBe(3);
-  expect(screen.getAllByTestId('quantity')[0].textContent).toBe("2")
-  expect(screen.getAllByTestId('quantity')[2].textContent).toBe("3")
+  expect(screen.getAllByTestId('quantity')[0].textContent).toBe("x2")
+  expect(screen.getAllByTestId('quantity')[2].textContent).toBe("x3")
 
 })
 
 test("should properly increment items with large quantities", async () => {
   const user = userEvent.setup();
-  render(<ShoppingPage />);
+  render(
+    <BrowserRouter>
+      <ShoppingPage />
+    </BrowserRouter>
+  );
   
   await waitFor(() => {
     screen.getByTestId("inventory");
@@ -137,6 +164,6 @@ test("should properly increment items with large quantities", async () => {
     await user.click(secondItemButton);
   }
 
-  expect(screen.getAllByTestId("quantity")[0].textContent).toBe("100");
-  expect(screen.getAllByTestId("quantity")[1].textContent).toBe("100");
+  expect(screen.getAllByTestId("quantity")[0].textContent).toBe("x100");
+  expect(screen.getAllByTestId("quantity")[1].textContent).toBe("x100");
 });

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 const Checkout = () => {
     const location = useLocation();
     const [cartItems, setCartItems] = useState(location.state?.cartItems || [])
-    let handleTotalPrice = cartItems.reduce((accumulator, currentValue) => accumulator + (currentValue.price * currentValue.quantity), 0,);
+    let handleTotalPrice = cartItems.reduce((accumulator, currentValue) => accumulator + (currentValue.price * currentValue.quantity), 0,).toFixed(2);
     const [totalPrice, setTotalPrice] = useState(handleTotalPrice);
 
     useEffect(()=>{

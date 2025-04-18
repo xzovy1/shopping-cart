@@ -35,7 +35,9 @@ const ShoppingPage = () => {
     return (
         <div data-testid="entered-store" >
             <div className={styles.header}>
-            <h1>Welcome in!</h1>
+            
+                <h1>Welcome in!</h1>
+                <span>Looking for something in particular? <input type="text"  name="search-bar" id={styles.searchFilter}/><button id={styles.searchButton}>Go</button></span>
 
             </div>
             <div className={styles.shoppingPageContent}>

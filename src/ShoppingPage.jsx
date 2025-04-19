@@ -44,7 +44,7 @@ const ShoppingPage = () => {
                         <span>Looking for something in particular? </span> 
                         <span>
                             <input type="text"  name="search-bar" id={styles.searchFilter} onChange={e => setSearchBar(e.target.value)} value={searchBar}/>
-                            <button id={styles.searchButton}>Go</button>
+                            {/* <button id={styles.searchButton}>Go</button> */}
                         </span>
                     </form>
                 </span>
@@ -52,7 +52,7 @@ const ShoppingPage = () => {
             </div>
             <div className={styles.shoppingPageContent}>
                 <Cartbar cartItems={inCart}/>
-                <Inventory updateCartItems={handleInCart} filterValue={searchBar}/>
+                <Inventory updateCartItems={handleInCart} filterValue={searchBar.toLowerCase()}/>
             </div>
         </div>
     )

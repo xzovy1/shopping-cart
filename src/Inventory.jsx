@@ -1,4 +1,5 @@
 import ItemCard from "./ItemCard";
+import Loading from "./Loading";
 import styles from "./modules/Inventory.module.css"
 import { useEffect, useState } from "react";
 
@@ -15,10 +16,10 @@ const useItems = () => {
             return response.json()})
             .then(items => {
                 items.forEach(item => {item.quantity = 1; item.price = item.price.toFixed(2)});
-                return setItems(items)
+                return setItems(null)
             })
             .catch((error) => setError(error))
-            .finally(()=>setLoading(false));
+            .finally(()=>setLoading(true));
     },[]);
     return {items, error, loading}
 }
@@ -26,7 +27,7 @@ const useItems = () => {
 const Inventory = ({updateCartItems, filterValue}) => {
     const {items, error, loading} = useItems();
     let queryItems;//replace with memoization
-    if(loading)return <p id="server-loading">Loading...</p>
+    if(loading)return <div id="server-loading" className={styles.items}><Loading /></div>
     if(error)return <p id="server-error">A Server error has occurred</p>
     
     return (

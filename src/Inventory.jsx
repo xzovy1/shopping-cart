@@ -23,16 +23,19 @@ const useItems = () => {
     return {items, error, loading}
 }
 
-const Inventory = ({updateCartItems}) => {
+const Inventory = ({updateCartItems, filterValue}) => {
     const {items, error, loading} = useItems();
     
     if(loading)return <p id="server-loading">Loading...</p>
     if(error)return <p id="server-error">A Server error has occurred</p>
-
+    
     return (
         <>
             <div data-testid="inventory" className={styles.items}>
-                {items.map((item) => 
+                {items.filter(item => {
+                    if(filterValue == ''){return item}
+                    return item.category.includes(filterValue) || item.title.includes(filterValue)}
+                ).map((item) => 
                     <ItemCard key={item.id} item={item} itemClickHandler={updateCartItems} />
                 )}
                 <p data-testid={'quantity'}>{!items.length ? '' : items.length + " items loaded"}</p>

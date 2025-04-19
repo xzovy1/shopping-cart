@@ -7,7 +7,7 @@ import { useLocation } from "react-router-dom";
 const ShoppingPage = () => {
     let location = useLocation();
     const [inCart, setInCart] = useState([]);
-
+    const [searchBar, setSearchBar] = useState("");
     useEffect(()=>{
         if(location.state != null){
             setInCart(location.state.cartItems)
@@ -31,18 +31,28 @@ const ShoppingPage = () => {
         }
     inCart.find(e => e.id == item.id) == undefined ? addToCart() : updateQuantity();
     }
-
     return (
         <div data-testid="entered-store" >
             <div className={styles.header}>
             
                 <h1>Welcome in!</h1>
-                <span>Looking for something in particular? <input type="text"  name="search-bar" id={styles.searchFilter}/><button id={styles.searchButton}>Go</button></span>
+                <span>
+                    <form onSubmit={e => {
+                        e.preventDefault();
+                        setSearchBar('');
+                        }}>
+                        <span>Looking for something in particular? </span> 
+                        <span>
+                            <input type="text"  name="search-bar" id={styles.searchFilter} onChange={e => setSearchBar(e.target.value)} value={searchBar}/>
+                            <button id={styles.searchButton}>Go</button>
+                        </span>
+                    </form>
+                </span>
 
             </div>
             <div className={styles.shoppingPageContent}>
                 <Cartbar cartItems={inCart}/>
-                <Inventory updateCartItems={handleInCart} />
+                <Inventory updateCartItems={handleInCart} filterValue={searchBar}/>
             </div>
         </div>
     )

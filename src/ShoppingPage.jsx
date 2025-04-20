@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Inventory from "./Inventory";
 import styles from "./modules/ShoppingPage.module.css";
 import { useLocation } from "react-router-dom";
+import NavBar from "./NavBar";
 
 const ShoppingPage = () => {
     let location = useLocation();
@@ -36,6 +37,7 @@ const ShoppingPage = () => {
             <div className={styles.header}>
             
                 <h1>Welcome in!</h1>
+                <NavBar />
                 <span>
                     <form onSubmit={e => {
                         e.preventDefault();

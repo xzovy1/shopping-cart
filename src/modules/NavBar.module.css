@@ -1,0 +1,15 @@
+.nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+    text-align: center;
+    
+}
+
+.nav a {
+    /* text-decoration: underline; */
+    color: rgb(0, 132, 255);
+    padding: 10px;
+}

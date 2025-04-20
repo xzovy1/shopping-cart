@@ -1,25 +1,25 @@
 import styles from './modules/ItemCard.module.css';
 const dummyItem={
-    title: '',
-    category: '',
+    title: 'lorem ipsum',
+    category: 'lorem ipsum',
     image: '',
-    rating: '',
-    price: ''
-
+    description: "Contrary to popular belief, Lorem Ipsum is not simply random text.",
+    rating: 'lorem',
+    price: '100'
 }
 
-const DummyCard = (item = dummyItem) => {
+const DummyCard = ({item = dummyItem}) => {
     return (
-        <div className={styles.itemCard} key={item.id} data-testid={"item"}>
+        <div className={styles.dummyCard} key={item.id} data-testid={"item"}>
         <div className={styles.imageDiv}>
-            <img src={item.image} alt={item.description} />
+            <img src={''} alt={item.description} className={styles.imgPlaceholder}/>
+            
         </div>
         <div className={styles.infoDiv}>
             <div className={styles.itemTitle}>
             <b>{item.price}</b> {item.title}
             </div>
             <p>{item.description}</p>
-            {/* <button onClick={()=>{itemClickHandler(item)}} >Add to Cart</button> */}
         </div>
     </div>
     )

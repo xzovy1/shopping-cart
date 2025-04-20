@@ -1,5 +1,5 @@
 .itemCard{
-    width: 100%;
+    max-width: 100%;
     border: 3px solid white;
     border-radius: 15px;
     display: grid;
@@ -8,7 +8,18 @@
     justify-content: space-between;
 }
 
+.dummyCard{
+    composes: itemCard;
+    width: 100%;
+}
+.dummyCard *{
+    color: rgba(255, 255, 255, 0)
+}
+
+
+
 .imageDiv {
+    grid-column: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,6 +28,7 @@
 }
 
 .infoDiv{
+    grid-column: 2;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -27,7 +39,6 @@
 .infoDiv > p {
     font-size: smaller;
     margin: 13px;
-    overflow-y: none;
 }
 
 .itemTitle {
@@ -38,6 +49,10 @@
 img {
     width: auto;
     height: auto;
-    max-width: 60%;
+    max-width: 50%;
     max-height: 60%;
+}
+
+.imgPlaceholder{
+    visibility: hidden;
 }

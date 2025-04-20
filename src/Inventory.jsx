@@ -16,10 +16,10 @@ const useItems = () => {
             return response.json()})
             .then(items => {
                 items.forEach(item => {item.quantity = 1; item.price = item.price.toFixed(2)});
-                return setItems(null)
+                return setItems(items)
             })
             .catch((error) => setError(error))
-            .finally(()=>setLoading(true));
+            .finally(()=>setLoading(false));
     },[]);
     return {items, error, loading}
 }

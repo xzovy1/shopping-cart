@@ -6,6 +6,11 @@
     grid-template-columns: 1fr 3fr;
     background-color: white;
     justify-content: space-between;
+
+}
+
+.itemCard:hover > .imageDiv {
+    transform: scale(1.1);
 }
 
 .dummyCard{
@@ -17,23 +22,12 @@
 }
 
 
-
-.imageDiv {
-    grid-column: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    max-width: 100%; 
-}
-
 .infoDiv{
     grid-column: 2;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin: 10px;
-    
 }
 
 .infoDiv > p {
@@ -46,7 +40,19 @@
     font-size: large;
 }
 
-img {
+.imageDiv {
+    grid-column: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    max-width: 100%; 
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+}
+
+.imageDiv img {
     width: auto;
     height: auto;
     max-width: 50%;

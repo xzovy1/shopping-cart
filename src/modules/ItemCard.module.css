@@ -6,7 +6,7 @@
     grid-template-columns: 1fr 3fr;
     background-color: white;
     justify-content: space-between;
-
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .itemCard:hover > .imageDiv {
@@ -20,7 +20,6 @@
 .dummyCard *{
     color: rgba(255, 255, 255, 0)
 }
-
 
 .infoDiv{
     grid-column: 2;

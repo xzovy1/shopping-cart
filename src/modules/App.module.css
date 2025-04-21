@@ -1,0 +1,56 @@
+:root{
+    --distance: 850%;
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100%{opacity: 1;}
+}
+
+@keyframes swingDown {
+    0%{
+        transform: rotate3d(1,0,0,90deg)
+    }
+    50%{
+        transform: rotate3d(0,0,0,90deg)
+    }
+    98%{
+        transform: rotate3d(0,0,1,30deg)
+    }
+    100%{
+        transform: rotate3d(0,0,0,90deg)
+    }
+}
+
+@keyframes  zoomOff{
+    from{
+        transform: translate(0px);
+        opacity: 1;
+    }
+    to {
+        transform: translate(var(--distance));
+        opacity: 0;
+    }
+}
+
+.body{
+    perspective: 500px;
+}
+
+.body > h1{
+    animation: fadeIn 2s;
+}
+
+.enterBtn{
+    transform-origin: top;
+    animation: swingDown 3s, fadeIn 1500ms ;
+    transform-style: preserve-3d;
+    /* transform: scale(2); */
+}
+
+.zoom{
+    animation: zoomOff .4s ease-out;
+    transform: translate(var(--distance));
+    opacity: 0;
+}
+

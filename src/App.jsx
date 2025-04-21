@@ -14,7 +14,7 @@ function App() {
   }
   return(
     <>  
-        <div className={styles.body}>
+        <div className={`${styles.body} body`}>
           <h1>Welcome to The Mart Cart!</h1>
           <Link to="shopping-page" onClick={(e) => delayAndGo(e, 'shopping-page')} ><button className={`${zoomClass} ${styles.enterBtn}`} >Enter</button></Link>
         </div>

@@ -1,3 +1,4 @@
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -28,6 +29,10 @@ body {
   justify-content: center;
   min-width: 320px;
   min-height: 100vh;
+}
+
+.body{
+  animation: fadeIn 800ms;
 }
 
 .main{
@@ -75,4 +80,10 @@ button:focus-visible {
 
 ul {
   list-style: none;
+}
+
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100%{opacity: 1;}
 }

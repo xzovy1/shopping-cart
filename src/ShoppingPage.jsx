@@ -35,7 +35,7 @@ const ShoppingPage = () => {
     inCart.find(e => e.id == item.id) == undefined ? addToCart() : updateQuantity();
     }
     return (
-        <div data-testid="entered-store" className={styles.body}>
+        <div data-testid="entered-store" className={`${styles.body} body`}>
             <div className={styles.header}>
                 <div className={styles.welcome}>
                 <h1>Welcome in!</h1>

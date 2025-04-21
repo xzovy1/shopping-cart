@@ -30,7 +30,7 @@ const Checkout = () => {
     }         
     
     return (
-        <div data-testid="checkout" className={styles.root}>
+        <div data-testid="checkout" className={`${styles.root} body`}>
             <h1>Confirm your order</h1>
             <div className={styles.body}>
                 <ul>

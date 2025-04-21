@@ -2,6 +2,22 @@
     --distance: 850%;
 }
 
+.body{
+    perspective: 500px;
+}
+
+.enterBtn{
+    transform-origin: top;
+    animation: swingDown 3s, fadeIn 1500ms ;
+    transform-style: preserve-3d;
+}
+
+.zoom{
+    animation: zoomAway .4s ease-out;
+    transform: translate(var(--distance));
+    opacity: 0;
+}
+
 @keyframes fadeIn {
     0% {opacity: 0;}
     100%{opacity: 1;}
@@ -22,7 +38,7 @@
     }
 }
 
-@keyframes  zoomOff{
+@keyframes  zoomAway{
     from{
         transform: translate(0px);
         opacity: 1;
@@ -32,25 +48,3 @@
         opacity: 0;
     }
 }
-
-.body{
-    perspective: 500px;
-}
-
-.body > h1{
-    animation: fadeIn 2s;
-}
-
-.enterBtn{
-    transform-origin: top;
-    animation: swingDown 3s, fadeIn 1500ms ;
-    transform-style: preserve-3d;
-    /* transform: scale(2); */
-}
-
-.zoom{
-    animation: zoomOff .4s ease-out;
-    transform: translate(var(--distance));
-    opacity: 0;
-}
-

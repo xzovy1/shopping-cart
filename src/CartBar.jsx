@@ -14,17 +14,17 @@ const CartBar = ({cartItems}) => {
             <div className={styles.cart}>
                 <h3>Your Cart:</h3> 
                 {
-                (cartItems[0] == undefined) ?
-                ( <p>Looks like the cart is empty!</p> )     
-                : <>
-                    <ul>
-                        {
-                         loadCart(cartItems)
-                        }
-                    </ul>
-                  </>
-                }     
-                <Link to="/checkout" state={{cartItems}}><button className={styles.checkoutButton} data-testid="checkout-button">Checkout</button></Link>
+                    (cartItems.length == 0) 
+                    ?
+                        ( <p>Looks like the cart is empty!</p> )     
+                    :
+                        <>
+                            <ul>
+                                {loadCart(cartItems)}
+                            </ul>
+                            <Link to="/checkout" state={{cartItems}}><button className={styles.checkoutButton} data-testid="checkout-button">Checkout</button></Link>
+                        </>
+                }
             </div>
         </div>
     )

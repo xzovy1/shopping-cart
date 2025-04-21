@@ -39,7 +39,7 @@ const ShoppingPage = () => {
             <div className={styles.header}>
                 <div className={styles.welcome}>
                 <h1>Welcome in!</h1>
-                <NavBar />
+                <NavBar cartItems={inCart}/>
 
                 </div>
                 <span>

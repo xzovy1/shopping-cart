@@ -1,11 +1,11 @@
 import { expect, test } from "vitest";
 import { render, screen } from "@testing-library/react";
-import Cartbar from "../src/CartBar";
+import CartBar from "../src/CartBar";
 import { BrowserRouter } from "react-router-dom";
 
 test("cart bar displays empty cart message when empty", ()=> {
     render(<BrowserRouter>
-      <Cartbar cartItems={[]}/>
+      <CartBar cartItems={[]}/>
     </BrowserRouter>)
     expect(screen.getByText('Looks like the cart is empty!')).toBeInTheDocument();
 })
@@ -24,7 +24,7 @@ const testItems = [
 ]
     render(
       <BrowserRouter>
-      <Cartbar cartItems={testItems} />
+      <CartBar cartItems={testItems} />
       </BrowserRouter>
     )
     expect(screen.queryByText('Looks like the cart is empty!')).not.toBeInTheDocument();

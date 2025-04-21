@@ -1,4 +1,4 @@
-import Cartbar from "./CartBar";
+import CartBar from "./CartBar";
 import { useState, useEffect } from "react";
 import Inventory from "./Inventory";
 import styles from "./modules/ShoppingPage.module.css";
@@ -53,7 +53,7 @@ const ShoppingPage = () => {
 
             </div>
             <div className={styles.shoppingPageContent}>
-                <Cartbar cartItems={inCart}/>
+                <CartBar cartItems={inCart}/>
                 <Inventory updateCartItems={handleInCart} filterValue={searchBar}/>
             </div>
         </div>

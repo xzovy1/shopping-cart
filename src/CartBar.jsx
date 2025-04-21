@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import styles from './modules/Cartbar.module.css'
-const Cartbar = ({cartItems}) => {
+import styles from './modules/CartBar.module.css'
+const CartBar = ({cartItems}) => {
 
     function loadCart(cart){
        return cart.map((item, index) => {
@@ -10,7 +10,7 @@ const Cartbar = ({cartItems}) => {
         
     }
     return(
-        <div data-testid="cart-bar" className={styles.cartBar}>
+        <div data-testid="cart-bar" className={styles.CartBar}>
             <div className={styles.cart}>
                 <h3>Your Cart:</h3> 
                 {
@@ -30,4 +30,4 @@ const Cartbar = ({cartItems}) => {
     )
 }
 
-export default Cartbar;
+export default CartBar;

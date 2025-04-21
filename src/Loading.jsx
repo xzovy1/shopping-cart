@@ -2,7 +2,7 @@ import styles from './modules/ItemCard.module.css';
 const dummyItem={
     title: 'lorem ipsum',
     category: 'lorem ipsum',
-    image: '',
+    image: 'image.jpg',
     description: "Contrary to popular belief, Lorem Ipsum is not simply random text.",
     rating: 'lorem',
     price: '100'
@@ -12,7 +12,7 @@ const DummyCard = ({item = dummyItem}) => {
     return (
         <div className={styles.dummyCard} key={item.id} data-testid={"item"}>
         <div className={styles.imageDiv}>
-            <img src={''} alt={item.description} className={styles.imgPlaceholder}/>
+            <img src={item.image} alt={item.description} className={styles.imgPlaceholder}/>
             
         </div>
         <div className={styles.infoDiv}>

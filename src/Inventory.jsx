@@ -15,7 +15,10 @@ const useItems = () => {
                 if(response.status >= 400){throw new Error(response.status)}
             return response.json()})
             .then(items => {
-                items.forEach(item => {item.quantity = 1; item.price = item.price.toFixed(2)});
+                items.forEach(item => {
+                    item.quantity = 1; 
+                    item.price = item.price.toFixed(2);
+                });
                 return setItems(items)
             })
             .catch((error) => setError(error))
@@ -29,13 +32,18 @@ const Inventory = ({updateCartItems, filterValue}) => {
     let queryItems;//replace with memoization
     if(loading)return <div id="server-loading" className={styles.items}><Loading /></div>
     if(error)return <p id="server-error">A Server error has occurred</p>
-    
+
     return (
         <>
             <div data-testid="inventory" className={styles.items}>
+                
                 {queryItems = items.filter(item => {
-                    if(filterValue == ''){return item}
-                    return item.category.includes(filterValue) || item.title.includes(filterValue)}
+                    if(filterValue == '')return item;
+                    else if(item.category.toLowerCase().includes(filterValue.toLowerCase()))return item;
+                    else if(item.title.toLowerCase().includes(filterValue.toLowerCase()))return item;
+                    else if(item.description.toLowerCase().includes(filterValue.toLowerCase()))return item;
+                    
+                    }
                 ).map((item) => 
                     <ItemCard key={item.id} item={item} itemClickHandler={updateCartItems} />
                 )}

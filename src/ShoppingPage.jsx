@@ -54,7 +54,7 @@ const ShoppingPage = () => {
             </div>
             <div className={styles.shoppingPageContent}>
                 <Cartbar cartItems={inCart}/>
-                <Inventory updateCartItems={handleInCart} filterValue={searchBar.toLowerCase()}/>
+                <Inventory updateCartItems={handleInCart} filterValue={searchBar}/>
             </div>
         </div>
     )

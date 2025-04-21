@@ -17,15 +17,16 @@
 .header > span {
     align-self: flex-end;
     padding: 5px;
-
     width: 45%;
+}
+
+.welcome{
+    display: grid;
+    grid-template-rows: 1fr 20px;
 }
 
 form *{
     margin: 2px;
 }
 
-#searchButton{
-    padding: 0px 5px;
-}
 

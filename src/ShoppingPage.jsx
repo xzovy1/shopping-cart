@@ -1,8 +1,10 @@
-import CartBar from "./CartBar";
 import { useState, useEffect } from "react";
-import Inventory from "./Inventory";
-import styles from "./modules/ShoppingPage.module.css";
 import { useLocation } from "react-router-dom";
+
+import styles from "./modules/ShoppingPage.module.css";
+
+import CartBar from "./CartBar";
+import Inventory from "./Inventory";
 import NavBar from "./NavBar";
 
 const ShoppingPage = () => {
@@ -33,11 +35,13 @@ const ShoppingPage = () => {
     inCart.find(e => e.id == item.id) == undefined ? addToCart() : updateQuantity();
     }
     return (
-        <div data-testid="entered-store" >
+        <div data-testid="entered-store" className={styles.body}>
             <div className={styles.header}>
-            
+                <div className={styles.welcome}>
                 <h1>Welcome in!</h1>
                 <NavBar />
+
+                </div>
                 <span>
                     <form onSubmit={e => {
                         e.preventDefault();
@@ -45,8 +49,7 @@ const ShoppingPage = () => {
                         }}>
                         <span>Looking for something in particular? </span> 
                         <span>
-                            <input type="text"  name="search-bar" id={styles.searchFilter} onChange={e => setSearchBar(e.target.value)} value={searchBar}/>
-                            {/* <button id={styles.searchButton}>Go</button> */}
+                            <input type="text"  name="search-bar" onChange={e => setSearchBar(e.target.value)} value={searchBar}/>
                         </span>
                     </form>
                 </span>

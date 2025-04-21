@@ -1,5 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import styles from "./modules/Checkout.module.css"
 
 const Checkout = () => {
     const location = useLocation();
@@ -29,25 +30,35 @@ const Checkout = () => {
     }         
     
     return (
-        <div data-testid="checkout">
+        <div data-testid="checkout" className={styles.root}>
             <h1>Confirm your order</h1>
-            <ul>
-                {cartItems.map(item => 
-                    <li key={item.id}>
-                        <span>{item.title}</span> <span data-testid="price">${item.price}</span> x <span data-testid="quantity">{item.quantity}</span>
-                        <div>
-                            <button onClick={()=>increment(item)}>+</button>
-                            <button onClick={()=>decrement(item)}>-</button>
+            <div className={styles.body}>
+                <ul>
+                    {cartItems.map(item => 
+                    <div key={item.id}>
+                        
+                        <li key={item.id} className={styles.item}>
+                            <span className={styles.itemTitle}>{item.title}</span>
+                            <span data-testid="price">${item.price}</span>
+                            <div className={styles.quantitySection}>
+                                <div className={styles.quantityBtn}>
+                                    <button className={styles.increaseBtn}onClick={()=>increment(item)}>+</button>
+                                    <button className={styles.decreaseBtn} onClick={()=>decrement(item)}>-</button>
+                                </div>
+                                <div className={styles.quantityAmount}> x<span data-testid="quantity">{item.quantity}</span></div>
+                            </div>
+                        </li>
+                        <hr />
                         </div>
-                    </li>
-                )}
-            </ul>
-            <div data-testid="order-total">Total: ${totalPrice}</div>
+                    )}
+                </ul>
+                <h4 data-testid="order-total" className={styles.orderTotal}>Total: ${totalPrice}</h4>
+            </div>
+               <div> {cartItems.length > 0 ? <Link to="/order-complete"><button>Place Order</button></Link> : ''}</div>
             <div>
                 Forget something?
                 <Link to="/shopping-page" state={{cartItems}}> Return to Shopping Page</Link>
             </div>
-                {cartItems.length > 0 ? <Link to="/order-complete"><button>Place Order</button></Link> : ''}
         </div>
     )
 }

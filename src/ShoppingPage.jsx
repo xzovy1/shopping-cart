@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Inventory from "./Inventory";
 import styles from "./modules/ShoppingPage.module.css";
 import { useLocation } from "react-router-dom";
+import NavBar from "./NavBar";
 
 const ShoppingPage = () => {
     let location = useLocation();
@@ -36,6 +37,7 @@ const ShoppingPage = () => {
             <div className={styles.header}>
             
                 <h1>Welcome in!</h1>
+                <NavBar />
                 <span>
                     <form onSubmit={e => {
                         e.preventDefault();
@@ -44,7 +46,7 @@ const ShoppingPage = () => {
                         <span>Looking for something in particular? </span> 
                         <span>
                             <input type="text"  name="search-bar" id={styles.searchFilter} onChange={e => setSearchBar(e.target.value)} value={searchBar}/>
-                            <button id={styles.searchButton}>Go</button>
+                            {/* <button id={styles.searchButton}>Go</button> */}
                         </span>
                     </form>
                 </span>
@@ -52,7 +54,7 @@ const ShoppingPage = () => {
             </div>
             <div className={styles.shoppingPageContent}>
                 <Cartbar cartItems={inCart}/>
-                <Inventory updateCartItems={handleInCart} filterValue={searchBar}/>
+                <Inventory updateCartItems={handleInCart} filterValue={searchBar.toLowerCase()}/>
             </div>
         </div>
     )

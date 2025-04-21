@@ -1,4 +1,5 @@
 import ItemCard from "./ItemCard";
+import Loading from "./Loading";
 import styles from "./modules/Inventory.module.css"
 import { useEffect, useState } from "react";
 
@@ -25,20 +26,20 @@ const useItems = () => {
 
 const Inventory = ({updateCartItems, filterValue}) => {
     const {items, error, loading} = useItems();
-    
-    if(loading)return <p id="server-loading">Loading...</p>
+    let queryItems;//replace with memoization
+    if(loading)return <div id="server-loading" className={styles.items}><Loading /></div>
     if(error)return <p id="server-error">A Server error has occurred</p>
     
     return (
         <>
             <div data-testid="inventory" className={styles.items}>
-                {items.filter(item => {
+                {queryItems = items.filter(item => {
                     if(filterValue == ''){return item}
                     return item.category.includes(filterValue) || item.title.includes(filterValue)}
                 ).map((item) => 
                     <ItemCard key={item.id} item={item} itemClickHandler={updateCartItems} />
                 )}
-                <p data-testid={'quantity'}>{!items.length ? '' : items.length + " items loaded"}</p>
+                <p data-testid={'quantity'}>{!items.length ? '' : queryItems.length + " items loaded"}</p>
             </div>
         </>
     )

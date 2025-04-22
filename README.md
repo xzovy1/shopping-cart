@@ -2,7 +2,7 @@
 a simple shopping cart with 3 pages and a nav bar.
  - Home page
  
- ![HomePage]("/src/assets/Screenshot 2025-04-21 at 8.19.44 PM.png")
+ ![HomePage]("./src/assets/Screenshot 2025-04-21 at 8.19.44 PM.png")
  - Items page
  - Checkout page
 ## Goals

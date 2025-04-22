@@ -47,7 +47,7 @@ const Inventory = ({updateCartItems, filterValue}) => {
                 ).map((item) => 
                     <ItemCard key={item.id} item={item} itemClickHandler={updateCartItems} />
                 )}
-                <p data-testid={'quantity'}>{!items.length ? '' : queryItems.length + " items loaded"}</p>
+                <p data-testid={'quantity'}>{!items.length ? '0 items loaded' : queryItems.length + " items loaded"}</p>
             </div>
         </>
     )

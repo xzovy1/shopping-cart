@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
-import styles from './modules/CartBar.module.css'
-const CartBar = ({cartItems}) => {
+import { useContext } from 'react';
+import styles from './modules/CartBar.module.css';
+import { ShopContext } from './ShoppingPage';
+
+const CartBar = () => {
+    const {inCart} = useContext(ShopContext);
 
     function loadCart(cart){
        return cart.map((item, index) => {
@@ -13,15 +17,15 @@ const CartBar = ({cartItems}) => {
             <div className={styles.cart}>
                 <h3>Your Cart:</h3> 
                 {
-                    (cartItems.length == 0) 
+                    (inCart.length == 0) 
                     ?
                         ( <p>Looks like the cart is empty!</p> )     
                     :
                         <>
                             <ul>
-                                {loadCart(cartItems)}
+                                {loadCart(inCart)}
                             </ul>
-                            <Link to="/checkout" state={{cartItems}}><button className={styles.checkoutButton} data-testid="checkout-button">Checkout</button></Link>
+                            <Link to="/checkout" state={{inCart}}><button className={styles.checkoutButton} data-testid="checkout-button">Checkout</button></Link>
                         </>
                 }
             </div>

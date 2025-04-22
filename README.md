@@ -1,4 +1,5 @@
 # Shopping Cart
+### View Demo here: [Shopping Cart](https://shopping-cart-9q2.pages.dev/)
 a simple shopping cart with 3 pages and a nav bar.
  - Home page
  - Items page

@@ -4,7 +4,11 @@ a simple shopping cart with 3 pages and a nav bar.
  - Home page
    ![homepage](/home.png)
  - Items page
+   ![items](/cart.png)
  - Checkout page
+   ![checkout](/checkout.png)
+ - Order placed Page
+   ![order-placed](/order-placed.png) 
 ## Goals
 the purpose of this project is to work on react concepts learned in the odin project so far:
  - React testing using [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
